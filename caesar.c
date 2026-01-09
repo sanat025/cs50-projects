@@ -1,9 +1,9 @@
 #include <cs50.h>
-#include <stdio.h>
 #include <ctype.h>
+#include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 bool only_digits(string s);
 char rotate(char c, int k);
@@ -26,24 +26,23 @@ int main(int argc, string argv[])
 
     int k = atoi(argv[1]);
 
-    string plaintext = get_string ("plaintext: ");
+    string plaintext = get_string("plaintext: ");
     printf("ciphertext: ");
 
-    for (int i=0, n = strlen(plaintext); i < n; i++)
+    for (int i = 0, n = strlen(plaintext); i < n; i++)
     {
         printf("%c", rotate(plaintext[i], k));
     }
 
     printf("\n");
     return 0;
-
 }
 
 bool only_digits(string s)
 {
     for (int i = 0, n = strlen(s); i < n; i++)
     {
-        if(!isdigit(s[i]))
+        if (!isdigit(s[i]))
         {
             return false;
         }
