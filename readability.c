@@ -1,33 +1,50 @@
 #include <cs50.h>
 #include <ctype.h>
 #include <math.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 
 int main(void)
 {
     string text = get_string("Text: ");
-
-    int l = 0, s = 0, w = 1;
-
+    int letters = 0;
+    int words = 0;
+    int sentences = 0;
+    bool in_word = false;
     for (int i = 0, n = strlen(text); i < n; i++)
     {
-        if (text[i] == ' ')
+        char c = text[i];
+        if (isalpha(c))
         {
-            w++;
+            letters++;
+            if (!in_word)
+            {
+                in_word = true;
+                words++;
+            }
         }
-        else if (text[i] == '.' || text[i] == '?' || text[i] == '!')
+        else
         {
-            s++;
-        }
-        else if (isalpha(text[i]))
-        {
-            l++;
+            if (isspace(c))
+            {
+                in_word = false;
+            }
+            if (c == '.' || c == '!' || c == '?')
+            {
+                sentences++;
+            }
         }
     }
 
-    int index = (int) round(0.0588 * l - 0.296 * s - 15.8);
-
+    if (words == 0)
+    {
+        printf("Before Grade 1\n");
+        return 0;
+    }
+    float L = (letters * 100.0f) / words;
+    float S = (sentences * 100.0f) / words;
+    int index = (int) round(0.0588f * L - 0.296f * S - 15.8f);
     if (index < 1)
     {
         printf("Before Grade 1\n");
@@ -38,6 +55,7 @@ int main(void)
     }
     else
     {
-        printf("Grade %d", index);
+        printf("Grade %i\n", index);
     }
+    return 0;
 }
