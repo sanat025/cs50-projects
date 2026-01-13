@@ -27,39 +27,37 @@ int main(int argc, char *argv[])
     bool found_jpeg = false;
 
     while (fread(buffer, BLOCK_SIZE, 1, input) == 1)
-
-
-        if (buffer[0] == 0xff &&
-            buffer[1] == 0xd8 &&
-            buffer[2] == 0xff &&
-            (buffer[3] & 0xf0) == 0xe0)
     {
-        if (found_jpeg)
+        bool is_jpeg_header =
+            buffer[0] == 0xff &&
+            buffer [1] == 0xd8 &&
+            buffer [2] == 0xff &&
+            (buffer[3] & 0xf0) == 0xe0;
+
+        if (is_jpeg_header)
         {
-            fclose(output);
+            if (output != NULL)
+            {
+                fclose(output);
+            }
+
+            char filename[8];
+            sprintf(filename, "%03i.jpg", file_count);
+            output = fopen(filename, "wb");
+            if (output == NULL)
+            {
+                fclose(input);
+                return 1;
+            }
+
+            file_count++;
         }
 
-        char filename[8];
-        sprintf(filename, "%03i.jpg", file_count);
-        output = fopen(filename, "wb");
-
-        if (output == NULL)
+        if (output != NULL)
         {
-            fclose(input);
-            return 1;
+            fwrite(buffer, BLOCK_SIZE, 1, output);
         }
-
-        file_count++;
-        found_jpeg = true;
     }
-
-    if (output != NULL)
-    {
-        fclose(output);
-    }
-
-    fclose(input);
-    return 0;
 
 
 }
