@@ -20,11 +20,11 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    uint8_t buffer[BLOCK_SIZE];
+    uint8_t buffer[512];
     FILE *output = NULL;
 
     int file_count =0;
-    bool found_jpeg = false;
+
 
     while (fread(buffer, BLOCK_SIZE, 1, input) == 1)
     {
@@ -55,9 +55,15 @@ int main(int argc, char *argv[])
 
         if (output != NULL)
         {
-            fwrite(buffer, BLOCK_SIZE, 1, output);
+            fwrite(buffer, 512, 1, output);
         }
     }
+
+    if (output != NULL)
+    {
+        fclose(output);
+    }
+    fclose(input);
 
 
 }
