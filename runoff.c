@@ -142,19 +142,19 @@ bool vote(int voter, int rank, string name)
 // Tabulate votes for non-eliminated candidates
 void tabulate(void)
 {
-   for (int i = 0; i < voter_count; i++)
-   {
-    for ( int j = 0; j < candidate_count; j++)
+    for (int i = 0; i < voter_count; i++)
     {
-        int idx = preferences [i][j];
-
-        if (!candidates[idx].eliminated)
+        for (int j = 0; j < candidate_count; j++)
         {
-            candidates[idx].votes++;
-            break;
+            int idx = preferences[i][j];
+
+            if (!candidates[idx].eliminated)
+            {
+                candidates[idx].votes++;
+                break;
+            }
         }
     }
-   }
 }
 
 // Print the winner of the election, if there is one
@@ -191,9 +191,9 @@ int find_min(void)
 // Return true if the election is tied between all candidates, false otherwise
 bool is_tie(int min)
 {
-    for (int i = 0; i< candidate_count; i++)
+    for (int i = 0; i < candidate_count; i++)
     {
-        if(!candidates[i].eliminated && candidates[i].votes != min)
+        if (!candidates[i].eliminated && candidates[i].votes != min)
         {
             return false;
         }
@@ -204,13 +204,12 @@ bool is_tie(int min)
 // Eliminate the candidate (or candidates) in last place
 void eliminate(int min)
 
-    {
+{
     for (int i = 0; i < candidate_count; i++)
     {
         if (!candidates[i].eliminated && candidates[i].votes == min)
         {
-            candidates[i].eliminated =  true;
+            candidates[i].eliminated = true;
         }
     }
-    }
-
+}
