@@ -61,7 +61,7 @@ person *create_family(int generations)
 
         p->alleles[0] = p->parents[0]->alleles[r0];
         p->alleles[1] = p->parents[1]->alleles[r1];
-      
+
     // If there are no generations left to create
     p->parents[0] = NULL;
     p->parents[1] = NULL;
