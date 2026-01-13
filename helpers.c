@@ -4,13 +4,12 @@
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
-    for (int i =0; i < height; i++)
+    for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
-            int avg = round((image[i][j].rgbtRed +
-                             image[i][j].rgbtGreen +
-                             image[i][j].rgbtBlue) / 3.0);
+            int avg =
+                round((image[i][j].rgbtRed + image[i][j].rgbtGreen + image[i][j].rgbtBlue) / 3.0);
             image[i][j].rgbtRed = avg;
             image[i][j].rgbtGreen = avg;
             image[i][j].rgbtBlue = avg;
@@ -25,7 +24,7 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-        int originalRed = image[i][j].rgbtRed;
+            int originalRed = image[i][j].rgbtRed;
             int originalGreen = image[i][j].rgbtGreen;
             int originalBlue = image[i][j].rgbtBlue;
 
@@ -43,15 +42,15 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-   for (int i = 0; i < height; i++)
-   {
-    for (int j = 0; j < width / 2; j++)
+    for (int i = 0; i < height; i++)
     {
-        RGBTRIPLE temp = image[i][j];
-        image[i][j] = image[i][width - 1- j];
-        image[i][width - 1 - j] = temp;
+        for (int j = 0; j < width / 2; j++)
+        {
+            RGBTRIPLE temp = image[i][j];
+            image[i][j] = image[i][width - 1 - j];
+            image[i][width - 1 - j] = temp;
+        }
     }
-   }
 }
 
 // Blur image
@@ -66,7 +65,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         }
     }
 
-        for (int i = 0; i < height; i++)
+    for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
@@ -96,4 +95,3 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         }
     }
 }
-
