@@ -1,0 +1,41 @@
+HTML tags used:
+html
+head
+title
+meta
+link
+body
+header
+nav
+section
+div
+footer
+h1
+p
+ul
+li
+a
+button
+form
+input
+label
+script
+
+CSS properties used:
+font-family
+margin
+color
+font-size
+background-color
+padding
+border
+
+JS implementation:
+button interactions
+simple form validation
+visual feedback for user actions.
+
+Bootstrap implementation:
+Used Bootstrap components such as navbar
+buttons
+layout utilities 

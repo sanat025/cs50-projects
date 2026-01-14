@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FinNova | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">FinNova</a>
+        <div>
+            <a class="nav-link d-inline text-light" href="about.html">About</a>
+            <a class="nav-link d-inline text-light" href="services.html">Services</a>
+            <a class="nav-link d-inline text-light" href="contact.html">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<header class="container mt-4">
+    <h1>FinNova</h1>
+    <p class="lead">A fictional fintech startup based in New Delhi.</p>
+
+    <button class="btn btn-primary" onclick="showMessage()">What we do</button>
+    <p id="message" class="mt-3"></p>
+</header>
+
+<script>
+    function showMessage() {
+        document.getElementById("message").innerText =
+            "FinNova focuses on building simple, secure digital finance tools.";
+    }
+</script>
+
+</body>
+</html>
