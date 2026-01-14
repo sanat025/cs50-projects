@@ -18,6 +18,6 @@ cents %= 10
 coins += cents // 5
 cents %= 5
 
-coins =+ cents
+coins += cents
 
 print(coins)
