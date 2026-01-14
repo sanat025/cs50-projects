@@ -4,7 +4,6 @@ def main():
     text = get_string("Text: ")
 
     letters = 0
-    words = 0
     sentences = 0
 
     for ch in text:
@@ -13,7 +12,7 @@ def main():
         elif ch in [".", "!", "?"]:
             sentences += 1
 
-    word = len(text.split())
+    words = len(text.split())
 
     L = (letters / words) * 100
     S = (sentences / words) * 100
@@ -28,4 +27,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
