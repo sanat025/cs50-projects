@@ -4,39 +4,41 @@ import sys
 
 def main():
     # TODO: Check for command-line usage
-    if len(sys.argv) !=3:
-        sys.exit("Usage: python dna.py data.csv squence.txt")
+    if len(sys.argv) != 3:
+        print("Usage: python dna.py data.csv sequence.txt")
+        sys.exit(1)
+
 
     # TODO: Read database file into a variable
-    with open(sys.argv[1], "r") as database_file:
-        reader = csv.DictReader(database_file)
-        database = [row for row in reader]
+    database = []
+    with open(sys.argv[1], "r") as file:
+        reader = csv.DictReader(file)
+        str_names = reader.fieldnames[1:]
+        for row in reader:
+            database.append(row)
 
     # TODO: Read DNA sequence file into a variable
-    with open(sys.argv[2], "r") as sequence_file:
-        sequence = sequence_file.read()
+    with open(sys.argv[2], "r") as file:
+        dna_sequence = file.read()
 
     # TODO: Find longest match of each STR in DNA sequence
-    str_counts = {}
-    for key in database[0].keys():
-        if key == "name":
-            continue
-        str_counts[key] = longest_match(sequence, key)
+    dna_fingerprint = {}
+    for str_name in str_names:
+        dna_fingerprint[str_name] = longest_match(dna_sequence, strname)
 
     # TODO: Check database for matching profiles
-    for row in database:
+    for person in database:
         match = True
-        for key in row.keys():
-            if key == "name":
-                continue
-            if int(row[key]) != str_counts[key]:
+        for str_name in str_names:
+            if inf(person[str_name]) != dna_fingerprint[str_name]:
                 match = False
                 break
-         if match:
-                print(row["name"])
-                return
+        if match:
+            print(person["name"])
+            return
 
     print("No match")
+    return
 
 
 def longest_match(sequence, subsequence):
