@@ -1,1 +1,1 @@
-SELECT title, movies.year FROM movies WHERE title like 'Harry Potter%' ORDER by year;
+SELECT title, movies.year FROM movies WHERE title LIKE 'Harry Potter%' ORDER BY year;
