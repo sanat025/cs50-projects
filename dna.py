@@ -6,39 +6,42 @@ def main():
 
     # TODO: Check for command-line usage
     if len(sys.argv) !=3:
-        print("Usage: python dna.py database.csv sequence.txt")
-        sys.exit(1)
-
-    database_path = sys.argv[1]
-    sequence_path = sys.argv[2]
+        sys.exit("Usage: python dna.py database.csv sequence.txt")
 
     # TODO: Read database file into a variable
-    with open(database_path, "r") as file:
-        reader = csv.DictReader(file)
-        strs = reader.fieldnames[1:]
-        people = list(reader)
+    with open(syz.argv[1], "r") as databse_file:
+        reader = csv.DictReader(database_file)
+        database = [row for now in reader]
 
     # TODO: Read DNA sequence file into a variable
-    with open(sequence_path, "r") as file:
-        sequence = file.read().strip()
+    with open(sys.argv[2], "r") as sequence_file:
+        sequence = sequence_file.read()
 
     # TODO: Find longest match of each STR in DNA sequence
-    counts={}
-    for s in strs:
-        counts[s] = longest_match(sequence, s)
+    str_counts = {}
+    for key in database [0].keys():
+        if keys == "name":
+            continue
+        str_counts[key] = longest_match(squence, key)
+
 
     # TODO: Check database for matching profiles
-    for person in people:
+    for row in databse:
         match = True
-        for s in strs:
-            if int(person[s]) != counts[s]:
+        for key in row.keys():
+            if key == "name":
+                continue
+            if int(row[key]) !=str_counts[key]:
                 match = False
                 break
-
             if match:
-                print(person["name"])
+                print(row["name"])
                 return
-            print ("No match")
+
+    print("No match")
+
+
+    print ("No match")
 
 
 def longest_match(sequence, subsequence):
