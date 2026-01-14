@@ -6,42 +6,40 @@ def main():
 
     # TODO: Check for command-line usage
     if len(sys.argv) !=3:
-        sys.exit("Usage: python dna.py database.csv sequence.txt")
+        sys.exit("Usage: python dna.py data.csv squence.txt")
 
     # TODO: Read database file into a variable
-    with open(syz.argv[1], "r") as databse_file:
-        reader = csv.DictReader(database_file)
-        database = [row for now in reader]
+    with open(sys.argv[1], "r") as database_file
+    database = [row for row in reader]
 
     # TODO: Read DNA sequence file into a variable
     with open(sys.argv[2], "r") as sequence_file:
-        sequence = sequence_file.read()
+        sequqence = sequence_file.read()
 
     # TODO: Find longest match of each STR in DNA sequence
     str_counts = {}
-    for key in database [0].keys():
-        if keys == "name":
+    for key in database[0].keys:
+        if key == "name":
             continue
-        str_counts[key] = longest_match(squence, key)
-
+        str_counts[key] = longest_match(sequence, key)
 
     # TODO: Check database for matching profiles
-    for row in databse:
+    for row in database:
         match = True
         for key in row.keys():
             if key == "name":
                 continue
-            if int(row[key]) !=str_counts[key]:
+            if int(row[key]) != str_counts[key]:
                 match = False
                 break
             if match:
                 print(row["name"])
                 return
 
-    print("No match")
+        print("No match")
 
 
-    print ("No match")
+    return
 
 
 def longest_match(sequence, subsequence):
