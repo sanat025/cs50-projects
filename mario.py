@@ -7,5 +7,7 @@ while True:
         pass
 
 for i in range(1, height +1):
-        print("#" * i)
+        spaces = height - i
+        hashes = i
+        print(" " * spaces + "#" * hashes)
 
