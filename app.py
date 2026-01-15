@@ -38,12 +38,12 @@ def index():
     # get user's stocks and shares
     stocks = db.execute(
         "SELECT symbol, SUM(shares) as total_shares FROM transactions WHERE user_id = :user_id GROUP BY symbol HAVING total_shares > 0",
-        user_id = session["user_id"]
+        user_id=session["user_id"]
     )
 
     # get user's cash balance
     cash = db.execute(
-        "SELECT cash FROM users WHERE id = :user_id",user_id = session["user_id"]
+        "SELECT cash FROM users WHERE id = :user_id", user_id=session["user_id"]
     )[0]["cash"]
 
     # total value
@@ -59,9 +59,7 @@ def index():
         total_value += stock["value"]
         grand_total += stock["value"]
 
-    return render_template("index.html", stocks = stocks, cash = usd(cash), total_value = usd(total_value), grand_total = grand_total)
-
-
+    return render_template("index.html", stocks=stocks, cash=usd(cash), total_value=usd(total_value), grand_total=grand_total)
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -112,17 +110,17 @@ def buy():
     else:
         return render_template("buy.html")
 
+
 @app.route("/history")
 @login_required
 def history():
     """Show history of transactions"""
-        transactions = db.execute(
+    transactions = db.execute(
         "SELECT * FROM transactions WHERE user_id = :user_id ORDER BY timestamp DESC",
-        user_id = session["user_id"]
+        user_id=session["user_id"]
     )
 
-    return render_template("history.html", transactions = transactions)
-
+    return render_template("history.html", transactions=transactions)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -185,10 +183,9 @@ def quote():
         if not quote:
             return apology("Invalid symbol", 400)
         else:
-            return render_template("quote.html", quote = quote)
+            return render_template("quote.html", quote=quote)
     else:
         return render_template("quote.html")
-
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -216,7 +213,8 @@ def register():
             return apology("Username already exists", 400)
 
         # register new valid user
-        db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", request.form.get("username"), generate_password_hash(request.form.get("password")))
+        db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", request.form.get(
+            "username"), generate_password_hash(request.form.get("password")))
 
         # search for the newly registered user
         rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
@@ -229,7 +227,6 @@ def register():
 
     else:
         return render_template("register.html")
-
 
 
 @app.route("/sell", methods=["GET", "POST"])
@@ -267,17 +264,17 @@ def sell():
             # update user
             db.execute(
                 "UPDATE users SET cash = cash + :total_sale WHERE id = :user_id",
-                total_sale = total_sale,
-                user_id = session["user_id"]
+                total_sale=total_sale,
+                user_id=session["user_id"]
             )
 
             # update history
             db.execute(
                 "INSERT INTO transactions (user_id, symbol, shares, price) VALUES (:user_id, :symbol, :shares, :price)",
-                user_id = session["user_id"],
-                symbol = symbol,
-                shares = -shares,
-                price = price
+                user_id=session["user_id"],
+                symbol=symbol,
+                shares=-shares,
+                price=price
             )
 
             flash(f"Sold {shares} shares of {symbol} for {usd(total_sale)}!")
@@ -285,9 +282,4 @@ def sell():
 
         return apology("symbol not found")
     else:
-        return render_template("sell.html", stocks = stocks)
-
-
-
-
-
+        return render_template("sell.html", stocks=stocks)
