@@ -1,0 +1,51 @@
+[
+  {
+    "kind": "expense",
+    "amount": 100.0,
+    "description": "burger",
+    "category": "Food",
+    "timestamp": "2026-01-15T05:05:48"
+  },
+  {
+    "kind": "expense",
+    "amount": 250.0,
+    "description": "Pizza with friends 1",
+    "category": "Food",
+    "timestamp": "2026-01-15T05:41:13"
+  },
+  {
+    "kind": "expense",
+    "amount": 180.0,
+    "description": "Uber ride",
+    "category": "Transport",
+    "timestamp": "2026-01-15T05:42:03"
+  },
+  {
+    "kind": "income",
+    "amount": 2000.0,
+    "description": "Salary",
+    "category": "Other",
+    "timestamp": "2026-01-15T05:42:21"
+  },
+  {
+    "kind": "expense",
+    "amount": 250.0,
+    "description": "Pizza with friends",
+    "category": "Food",
+    "timestamp": "2026-01-15T05:51:25"
+  },
+  {
+    "kind": "expense",
+    "amount": 180.0,
+    "description": "Uber ride",
+    "category": "Transport",
+    "timestamp": "2026-01-15T05:52:09"
+  },
+  {
+    "kind": "income",
+    "amount": 2000.0,
+    "description": "Salary",
+    "category": "Other",
+    "timestamp": "2026-01-15T05:52:52"
+  }
+]
